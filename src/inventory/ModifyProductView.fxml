@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="inventory.AddProductViewController">
+    <stylesheets>
+        <URL value="@addproductview.css" />
+    </stylesheets>
+   <children>
+      <VBox layoutX="10.0" maxHeight="600.0" maxWidth="290.0" minHeight="600.0" minWidth="290.0" prefHeight="600.0" prefWidth="290.0">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="26.0" layoutY="75.0" text="Modify Product" />
+               </children>
+            </AnchorPane>
+            <HBox maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="200.0">
+               <children>
+                  <Label maxWidth="60.0" minWidth="60.0" prefWidth="60.0" text="ID">
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                  </Label>
+                  <TextField />
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
+            <HBox maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="200.0">
+               <children>
+                  <Label minWidth="60.0" prefWidth="60.0" text="Name">
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                  </Label>
+                  <TextField />
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
+            <HBox maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="200.0">
+               <children>
+                  <Label maxWidth="60.0" minWidth="60.0" prefWidth="60.0" text="Inv">
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                  </Label>
+                  <TextField />
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
+            <HBox maxHeight="50.0" minHeight="50.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label maxWidth="60.0" minWidth="60.0" prefWidth="60.0" text="Price">
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                  </Label>
+                  <TextField />
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label maxWidth="60.0" minWidth="60.0" prefWidth="60.0" text="Max">
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                  </Label>
+                  <TextField maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
+                  <Label text=" Min">
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </Label>
+                  <TextField maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutX="300.0" maxHeight="600.0" maxWidth="490.0" minHeight="600.0" minWidth="490.0" prefHeight="600.0" prefWidth="490.0">
+         <children>
+            <AnchorPane maxWidth="490.0" minWidth="490.0" prefHeight="200.0" prefWidth="490.0">
+               <children>
+                  <TextField layoutX="221.0" layoutY="49.0" />
+                  <Button layoutX="110.0" layoutY="49.0" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" prefWidth="100.0" text="Search" />
+               </children>
+            </AnchorPane>
+            <TableView maxHeight="200.0" maxWidth="490.0" minHeight="200.0" minWidth="490.0" prefHeight="200.0" prefWidth="490.0">
+               <columns>
+                  <TableColumn maxWidth="122.5" minWidth="122.5" prefWidth="122.5" text="Part ID" />
+                  <TableColumn maxWidth="122.5" minWidth="122.5" prefWidth="122.5" text="Part Name" />
+                  <TableColumn maxWidth="122.5" minWidth="122.5" prefWidth="122.5" text="Inventory Level" />
+                  <TableColumn maxWidth="122.5" minWidth="122.5" prefWidth="122.5" text="Price per unite" />
+               </columns>
+            </TableView>
+            <AnchorPane maxHeight="30.0" maxWidth="490.0" minHeight="30.0" minWidth="490.0" prefHeight="30.0" prefWidth="490.0">
+               <children>
+                  <Button layoutX="380.0" layoutY="2.0" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" prefWidth="100.0" text="Add" />
+               </children>
+            </AnchorPane>
+            <TableView maxHeight="200.0" maxWidth="490.0" minHeight="200.0" minWidth="490.0" prefHeight="200.0" prefWidth="490.0">
+               <columns>
+                  <TableColumn maxWidth="122.5" minWidth="122.5" prefWidth="122.5" text="Part ID" />
+                  <TableColumn maxWidth="122.5" minWidth="122.5" prefWidth="122.5" text="Part Name" />
+                  <TableColumn maxWidth="122.5" minWidth="122.5" prefWidth="122.5" text="Inventory Level" />
+                  <TableColumn maxWidth="122.5" minWidth="122.5" prefWidth="122.5" text="Price per unite" />
+               </columns>
+            </TableView>
+            <AnchorPane maxWidth="490.0" minWidth="490.0" prefHeight="200.0" prefWidth="490.0">
+               <children>
+                  <Button layoutX="380.0" layoutY="2.0" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" prefWidth="100.0" text="Delete" />
+                  <Button layoutX="380.0" layoutY="40.0" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" prefWidth="100.0" text="Cancel" />
+                  <Button layoutX="269.0" layoutY="41.0" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" prefWidth="100.0" text="Save" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
