@@ -6,6 +6,8 @@
 package inventory;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,6 +19,9 @@ import javafx.stage.Stage;
  */
 public class Inventory extends Application {
     
+    public static ObservableList<Part> allParts = FXCollections.observableArrayList();
+    public static ObservableList<Product> allProducts = FXCollections.observableArrayList();
+    
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("MainView.fxml"));
@@ -25,6 +30,10 @@ public class Inventory extends Application {
         
         stage.setScene(scene);
         stage.show();
+    }
+    
+    public static void addPart(Part part){
+        allParts.add(part);
     }
 
     /**

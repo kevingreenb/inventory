@@ -7,9 +7,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventory.AddPartViewController">
+<AnchorPane id="AnchorPane" maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventory.AddPartController">
     <stylesheets>
-        <URL value="@addpartview.css" />
+        <URL value="@mainview.css" />
     </stylesheets>
    <children>
       <VBox layoutX="150.0" maxHeight="600.0" maxWidth="500.0" minHeight="600.0" minWidth="500.0" prefHeight="600.0" prefWidth="500.0">
@@ -41,7 +41,7 @@
                      <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Label layoutY="29.0" text="Add Part" />
+                              <Label layoutY="29.0" styleClass="header" text="Add Part" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -55,11 +55,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <Label layoutX="8.0" layoutY="38.0" text="ID" />
-                           </children>
-                        </AnchorPane>
+                        <Label prefHeight="0.0" prefWidth="13.0" text="ID" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.rowIndex="2">
@@ -141,42 +137,42 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <TextField layoutY="25.0" />
+                        <TextField fx:id="addPartsID" layoutY="25.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <TextField layoutY="25.0" />
+                        <TextField fx:id="addPartsName" layoutY="25.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
-                        <TextField layoutY="25.0" />
+                        <TextField fx:id="addPartsInv" layoutY="25.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <children>
-                        <TextField layoutY="25.0" />
+                        <TextField fx:id="addPartsPrice" layoutY="25.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <children>
-                        <TextField layoutY="25.0" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                        <TextField fx:id="addPartsMax" layoutY="25.0" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
                         <Label layoutX="147.0" layoutY="29.0" text="Min" />
-                        <TextField layoutX="220.0" layoutY="25.0" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                        <TextField fx:id="addPartsMin" layoutX="220.0" layoutY="25.0" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <children>
-                        <TextField layoutY="25.0" />
+                        <TextField fx:id="addPartsCompanyName" layoutY="25.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <children>
-                        <Button layoutX="190.0" layoutY="24.0" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" prefWidth="100.0" text="Save" />
+                        <Button layoutX="190.0" layoutY="24.0" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#addPartSave" prefWidth="100.0" text="Save" />
                      </children>
                   </AnchorPane>
-                  <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" prefWidth="100.0" text="Cancel" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                  <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#addPartCancel" prefWidth="100.0" text="Cancel" GridPane.columnIndex="2" GridPane.rowIndex="7" />
                </children>
             </GridPane>
          </children>

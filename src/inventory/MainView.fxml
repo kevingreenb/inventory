@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.effect.*?>
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -8,7 +9,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventory.FXMLDocumentController">
+<AnchorPane id="AnchorPane" maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventory.MainController">
+    <stylesheets>
+        <URL value="@mainview.css" />
+    </stylesheets>
    <children>
       <HBox maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0">
          <children>
@@ -41,7 +45,7 @@
                                  <children>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                        <children>
-                                          <Button layoutX="21.0" layoutY="12.0" mnemonicParsing="false" text="Search" />
+                                          <Button layoutY="12.0" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#mainSearchPart" prefWidth="100.0" text="Search" />
                                        </children>
                                     </AnchorPane>
                                     <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
@@ -57,18 +61,18 @@
                               </GridPane>
                               <AnchorPane prefHeight="50.0" prefWidth="288.0" GridPane.columnIndex="1">
                                  <children>
-                                    <Label layoutX="14.0" layoutY="17.0" text="Inventory Management System" />
+                                    <Label layoutX="14.0" layoutY="17.0" styleClass="header" text="Inventory Management System" />
                                  </children>
                               </AnchorPane>
                            </children>
                         </GridPane>
                      </children></HBox>
-                  <TableView maxHeight="400.0" maxWidth="380.0" minHeight="400.0" minWidth="380.0" prefHeight="400.0" prefWidth="380.0">
+                  <TableView fx:id="partTableView" maxHeight="400.0" maxWidth="380.0" minHeight="400.0" minWidth="380.0" prefHeight="400.0" prefWidth="380.0">
                     <columns>
-                        <TableColumn maxWidth="95.0" minWidth="95.0" prefWidth="95.0" text="Column X" />
-                      <TableColumn maxWidth="95.0" minWidth="95.0" prefWidth="95.0" text="C1" />
-                      <TableColumn maxWidth="95.0" minWidth="95.0" prefWidth="95.0" text="C2" />
-                        <TableColumn maxWidth="95.0" minWidth="95.0" prefWidth="95.0" text="Column X" />
+                        <TableColumn fx:id="partIDColumn" maxWidth="95.0" minWidth="49.0" prefWidth="85.0" text="Part ID" />
+                      <TableColumn fx:id="partNameColumn" maxWidth="126.0" minWidth="39.0" prefWidth="93.0" text="Part Name" />
+                      <TableColumn fx:id="inventoryLevelPartColumn" maxWidth="170.0" minWidth="76.0" prefWidth="110.0" text="Inventory Level" />
+                        <TableColumn fx:id="pricePartColumn" maxWidth="152.0" minWidth="86.0" prefWidth="92.0" text="Price" />
                     </columns>
                      <VBox.margin>
                         <Insets left="10.0" />
@@ -88,17 +92,17 @@
                      <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Button layoutX="23.0" layoutY="2.0" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" prefWidth="100.0" text="Add" />
+                              <Button layoutX="23.0" layoutY="2.0" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#mainAddPart" prefWidth="100.0" text="Add" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <Button layoutX="17.0" layoutY="2.0" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" prefWidth="100.0" text="Modify" />
+                              <Button layoutX="17.0" layoutY="2.0" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#mainModifyPart" prefWidth="100.0" text="Modify" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
                            <children>
-                              <Button layoutX="19.0" layoutY="2.0" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" prefWidth="100.0" text="Delete" />
+                              <Button layoutX="19.0" layoutY="2.0" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#mainDeletePart" prefWidth="100.0" text="Delete" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -120,7 +124,7 @@
                                  <children>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                        <children>
-                                          <Button layoutX="21.0" layoutY="12.0" mnemonicParsing="false" text="Search" />
+                                          <Button layoutY="12.0" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#mainSearchProduct" prefWidth="100.0" text="Search" />
                                        </children>
                                     </AnchorPane>
                                     <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
@@ -154,12 +158,12 @@
                         </GridPane>
                      </children>
                   </HBox>
-                  <TableView maxHeight="400.0" maxWidth="380.0" minHeight="400.0" minWidth="380.0" prefHeight="400.0" prefWidth="380.0">
+                  <TableView fx:id="productTableView" maxHeight="400.0" maxWidth="380.0" minHeight="400.0" minWidth="380.0" prefHeight="400.0" prefWidth="380.0">
                      <columns>
-                        <TableColumn maxWidth="95.0" minWidth="95.0" prefWidth="95.0" text="Column X" />
-                        <TableColumn maxWidth="95.0" minWidth="95.0" prefWidth="95.0" text="C1" />
-                        <TableColumn maxWidth="95.0" minWidth="95.0" prefWidth="95.0" text="C2" />
-                        <TableColumn maxWidth="95.0" minWidth="95.0" prefWidth="95.0" text="Column X" />
+                        <TableColumn fx:id="productIdColumn" maxWidth="95.0" minWidth="95.0" prefWidth="95.0" text="Product ID" />
+                        <TableColumn fx:id="productNameColumn" maxWidth="95.0" minWidth="95.0" prefWidth="95.0" text="Product Name" />
+                        <TableColumn fx:id="inventoryLevelProductColumn" maxWidth="136.0" minWidth="95.0" prefWidth="117.0" text="Inventory Level" />
+                        <TableColumn fx:id="priceProductColumn" maxWidth="95.0" minWidth="54.0" prefWidth="73.0" text="Price" />
                      </columns>
                      <VBox.margin>
                         <Insets left="10.0" />
@@ -169,22 +173,22 @@
                      <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Button layoutX="23.0" layoutY="2.0" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" prefWidth="100.0" text="Add" />
+                              <Button layoutX="23.0" layoutY="2.0" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#mainAddProduct" prefWidth="100.0" text="Add" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <Button layoutX="17.0" layoutY="2.0" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" prefWidth="100.0" text="Modify" />
+                              <Button layoutX="17.0" layoutY="2.0" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#mainModifyProduct" prefWidth="100.0" text="Modify" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
                            <children>
-                              <Button layoutX="19.0" layoutY="2.0" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" prefWidth="100.0" text="Delete" />
+                              <Button layoutX="19.0" layoutY="2.0" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#mainDeleteProduct" prefWidth="100.0" text="Delete" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <children>
-                              <Button layoutX="19.0" layoutY="2.0" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" prefWidth="100.0" text="Exit" />
+                              <Button layoutX="19.0" layoutY="2.0" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#mainExit" prefWidth="100.0" text="Exit" />
                            </children>
                         </AnchorPane>
                      </children>
