@@ -15,6 +15,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
@@ -23,6 +25,22 @@ import javafx.stage.Stage;
  * @author kevingreen
  */
 public class ModifyPartController implements Initializable {
+    @FXML
+    private TextField modifyPartsID;
+    @FXML
+    private TextField modifyPartsName;
+    @FXML
+    private TextField modifyPartsInv;
+    @FXML
+    private TextField modifyPartsPrice;
+    @FXML
+    private TextField modifyPartsMin;
+    @FXML
+    private TextField modifyPartsMax;
+    @FXML
+    private TextField modifyPartsCompanyName;
+    @FXML
+    private Label modifyPartCoMaName; 
 
     /**
      * Initializes the controller class.
@@ -34,12 +52,20 @@ public class ModifyPartController implements Initializable {
     @FXML
     public void modifyPartSave(ActionEvent event) throws IOException
     {
+        String name = modifyPartsName.getText();
+        String partID = modifyPartsID.getText();
+        String price = modifyPartsPrice.getText();
+        String inStock = modifyPartsInv.getText();
+        String min = modifyPartsMin.getText();
+        String max = modifyPartsMax.getText();
+        String companyName = modifyPartsCompanyName.getText();
+        
+        InHouse part = new InHouse(name, Integer.parseInt(partID),Double.parseDouble(price),Integer.parseInt(inStock),Integer.parseInt(min),Integer.parseInt(max),Integer.parseInt(companyName));
+        Inventory.addPart(part);
+        
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("MainView.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
-        
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();    
         window.setScene(tableViewScene);
         window.show();
     }

@@ -121,7 +121,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label prefHeight="17.0" prefWidth="117.0" text="Company Name" />
+                        <Label fx:id="modifyPartCoMaName" prefHeight="17.0" prefWidth="117.0" text="Company Name" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.rowIndex="7">
@@ -141,34 +141,34 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <TextField layoutY="25.0" />
+                        <TextField fx:id="modifyPartsID" disable="true" editable="false" layoutY="25.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <TextField layoutY="25.0" />
+                        <TextField fx:id="modifyPartsName" layoutY="25.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
-                        <TextField layoutY="25.0" />
+                        <TextField fx:id="modifyPartsInv" layoutY="25.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <children>
-                        <TextField layoutY="25.0" />
+                        <TextField fx:id="modifyPartsPrice" layoutY="25.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <children>
-                        <TextField layoutY="25.0" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                        <TextField fx:id="modifyPartsMax" layoutY="25.0" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
                         <Label layoutX="147.0" layoutY="29.0" text="Min" />
-                        <TextField layoutX="220.0" layoutY="25.0" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                        <TextField fx:id="modifyPartsMin" layoutX="220.0" layoutY="25.0" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <children>
-                        <TextField layoutY="25.0" />
+                        <TextField fx:id="modifyPartsCompanyName" layoutY="25.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">

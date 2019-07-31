@@ -19,8 +19,9 @@ import javafx.stage.Stage;
  */
 public class Inventory extends Application {
     
-    public static ObservableList<Part> allParts = FXCollections.observableArrayList();
-    public static ObservableList<Product> allProducts = FXCollections.observableArrayList();
+    private static ObservableList<Part> allParts = FXCollections.observableArrayList();
+    private static ObservableList<Product> allProducts = FXCollections.observableArrayList();
+    private static int partId = 0;
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -41,6 +42,19 @@ public class Inventory extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+    
+    public static ObservableList getAllParts(){
+        return allParts;
+    }
+    public static ObservableList getAllProducts(){
+        return allProducts;
+    }
+    public static void incrementPartId(){
+        partId++;
+    }
+    public static int getPartId(){
+        return partId;
     }
     
 }

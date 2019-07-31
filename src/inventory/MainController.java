@@ -50,7 +50,7 @@ public class MainController implements Initializable {
         partNameColumn.setCellValueFactory(new PropertyValueFactory<Part, String>("name"));
         inventoryLevelPartColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("inStock"));
         pricePartColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("price"));
-        partTableView.setItems(Inventory.allParts);
+        partTableView.setItems(Inventory.getAllParts());
     } 
     @FXML
     public void mainAddPart(ActionEvent event) throws IOException

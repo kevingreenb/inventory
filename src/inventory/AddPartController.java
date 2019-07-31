@@ -15,8 +15,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
 /**
@@ -40,44 +44,96 @@ public class AddPartController implements Initializable {
     private TextField addPartsMax;
     @FXML
     private TextField addPartsCompanyName;
+    @FXML
+    private Label addPartCoMaName; 
+    @FXML
+    private RadioButton addInHouse;
+    @FXML
+    private RadioButton addOutsourced;
+    
+    Boolean inHouse = true;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        final ToggleGroup group = new ToggleGroup();
+        addInHouse.setToggleGroup(group);
+        addOutsourced.setToggleGroup(group);
+        addInHouse.setSelected(true);
+        addPartsID.setText(Integer.toString(Inventory.getPartId()));
     }  
     
     @FXML
     public void addPartSave(ActionEvent event) throws IOException
-    {
-        String name = addPartsName.getText();
-        String partID = addPartsName.getText();
-        String price = addPartsPrice.getText();
-        String inStock = addPartsInv.getText();
-        String min = addPartsMin.getText();
-        String max = addPartsMax.getText();
-        String companyName = addPartsCompanyName.getText();
-        
-        InHouse part = new InHouse(name, Integer.parseInt(partID),Double.parseDouble(price),Integer.parseInt(inStock),Integer.parseInt(min),Integer.parseInt(max),Integer.parseInt(companyName));
-        Inventory.addPart(part);
-        
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("MainView.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();  
-        window.setScene(tableViewScene);
-        window.show();
+    {   
+        try {
+            String name = addPartsName.getText();
+            Integer partID = Integer.parseInt(addPartsID.getText());
+            Double price = Double.parseDouble(addPartsPrice.getText());
+            Integer inStock = Integer.parseInt(addPartsInv.getText());
+            Integer min = Integer.parseInt(addPartsMin.getText());
+            Integer max = Integer.parseInt(addPartsMax.getText());
+            String companyName = addPartsCompanyName.getText();
+            if (max <= min){
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Invalid Data");
+                alert.setHeaderText("");
+                alert.setContentText("Max needs to be greater than Min.");
+                alert.showAndWait();
+            } else if(inStock > max || inStock < min) {
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Invalid Data");
+                alert.setHeaderText("");
+                alert.setContentText("Inv needs to be less than Max and greater than Min.");
+                alert.showAndWait();            
+            }    
+            else {
+                if (inHouse == true){
+                     InHouse part = new InHouse(name,partID,price,inStock,min,max,Integer.parseInt(companyName));
+                     Inventory.addPart(part);
+                     Inventory.incrementPartId();
+                     goToMainScreen(event);
+                } else {
+                    Outsourced part = new Outsourced(name,partID,price,inStock,min,max,companyName);
+                    Inventory.addPart(part); 
+                    Inventory.incrementPartId();
+                    goToMainScreen(event);
+                }    
+            }             
+        } catch(NumberFormatException nfe) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Invalid Data");
+            alert.setHeaderText("");
+            alert.setContentText("Invalid data in text-fields!");
+            alert.showAndWait();   
+        }        
     }
     @FXML
     public void addPartCancel(ActionEvent event) throws IOException
     {
-        
-        
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("MainView.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();       
-        window.setScene(tableViewScene);
-        window.show();
+        goToMainScreen(event);
+    }
+    
+    @FXML
+    public void addInhouseAction(ActionEvent event) {
+        addInHouse.setSelected(true);
+        inHouse = true;
+        addPartCoMaName.setText("Machine ID");
+    }
+    @FXML
+    public void addOutsourcedAction(ActionEvent event) {
+        addOutsourced.setSelected(true);
+        inHouse = false;
+        addPartCoMaName.setText("Company Name");
+    }
+    public void goToMainScreen(ActionEvent event) throws IOException{
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("MainView.fxml"));
+            Scene tableViewScene = new Scene(tableViewParent);
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();  
+            window.setScene(tableViewScene);
+            window.show();
     }
     
 }

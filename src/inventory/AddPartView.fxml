@@ -117,7 +117,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label prefHeight="17.0" prefWidth="117.0" text="Company Name" />
+                        <Label fx:id="addPartCoMaName" prefHeight="17.0" prefWidth="117.0" text="Machine ID" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.rowIndex="7">
@@ -131,13 +131,13 @@
                   </GridPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
-                        <RadioButton layoutX="14.0" layoutY="29.0" mnemonicParsing="false" text="In-House" />
-                        <RadioButton layoutX="150.0" layoutY="29.0" mnemonicParsing="false" text="Outsourced" />
+                        <RadioButton fx:id="addInHouse" layoutX="14.0" layoutY="29.0" mnemonicParsing="false" onAction="#addInhouseAction" text="In-House" />
+                        <RadioButton fx:id="addOutsourced" layoutX="150.0" layoutY="29.0" mnemonicParsing="false" onAction="#addOutsourcedAction" text="Outsourced" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <TextField fx:id="addPartsID" layoutY="25.0" />
+                        <TextField fx:id="addPartsID" disable="true" editable="false" layoutY="25.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
