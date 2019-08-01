@@ -135,8 +135,8 @@
                   </GridPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
-                        <RadioButton layoutX="14.0" layoutY="29.0" mnemonicParsing="false" text="In-House" />
-                        <RadioButton layoutX="150.0" layoutY="29.0" mnemonicParsing="false" text="Outsourced" />
+                        <RadioButton fx:id="modifyInhouse" layoutX="14.0" layoutY="29.0" mnemonicParsing="false" text="In-House" />
+                        <RadioButton fx:id="modifyOutsourced" layoutX="150.0" layoutY="29.0" mnemonicParsing="false" text="Outsourced" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">

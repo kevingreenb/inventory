@@ -21,6 +21,6 @@ public class InHouse extends Part {
         this.machineID = machineID;
     }    
     public int getMachineID(){
-        return this.machineID;
+        return machineID;
     }
 }

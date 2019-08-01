@@ -2,8 +2,8 @@
  * Empty Stylesheet file.
  */
 
-.mainFxmlClass {
-    /*-fx-background-image: url("../Images/background.jpg"); */
+
+/*.mainFxmlClass {
     -fx-background-color: #1a1b18;
     -fx-border-radius: 20px;
 }
@@ -33,4 +33,4 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 18pt;
     -fx-text-fill: #d8d8d8;
-}
+}*/

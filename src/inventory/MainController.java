@@ -18,7 +18,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -42,6 +41,11 @@ public class MainController implements Initializable {
     @FXML private TableColumn<Part, Integer> inventoryLevelProductColumn;
     @FXML private TableColumn<Part, Integer> priceProductColumn;
     
+    private static Part modifyPart;
+    private static int modifyPartIndex;
+    private static Part modifyProduct;
+    private static int modifyProcutIndex;
+    
     
     @FXML 
     @Override
@@ -55,56 +59,62 @@ public class MainController implements Initializable {
     @FXML
     public void mainAddPart(ActionEvent event) throws IOException
     {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("AddPartView.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();        
-        window.setScene(tableViewScene);
-        window.show();
+        this.goToPage(event, "AddPartView.fxml");
     }
     @FXML
     public void mainModifyPart(ActionEvent event) throws IOException
     {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("ModifyPartView.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();        
-        window.setScene(tableViewScene);
-        window.show();
+        try {
+            modifyPart = partTableView.getSelectionModel().getSelectedItem();
+            modifyPartIndex = Inventory.getAllParts().indexOf(modifyPart);        
+            this.goToPage(event, "ModifyPartView.fxml");
+        } catch(Exception e){
+            System.out.println("No modify part selected");
+        }
     }
     @FXML
     public void mainDeletePart(ActionEvent event) throws IOException
     {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("AddPartView.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();        
-        window.setScene(tableViewScene);
-        window.show();
+        try {
+            Part part = partTableView.getSelectionModel().getSelectedItem();
+            System.out.print(part.toString());
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.initModality(Modality.NONE);
+
+            alert.setContentText("Do you want to delete the highlighted part?");
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.get() == ButtonType.OK) {
+                Inventory.deletePart(part);
+            }
+        } catch(NullPointerException e) {
+            System.out.println("No parts selected");
+        }
+
     }
     @FXML
     public void mainAddProduct(ActionEvent event) throws IOException
     {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("AddProductView.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();       
-        window.setScene(tableViewScene);
-        window.show();
+        this.goToPage(event, "AddProductView.fxml");
     }
     @FXML
     public void mainModifyProduct(ActionEvent event) throws IOException
     {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("ModifyProductView.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();        
-        window.setScene(tableViewScene);
-        window.show();
+        this.goToPage(event, "ModifyProductView.fxml");
     }
     @FXML
     public void mainDeleteProduct(ActionEvent event) throws IOException
     {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("AddProductView.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();       
-        window.setScene(tableViewScene);
-        window.show();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.initModality(Modality.NONE);
+
+        alert.setContentText("Do you want to delete the highlighted part?");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.get() == ButtonType.OK) {
+            Part part = partTableView.getSelectionModel().getSelectedItem();
+            Inventory.deletePart(part);
+        }
     }
     @FXML
     public void mainExit(ActionEvent event) throws IOException
@@ -122,20 +132,23 @@ public class MainController implements Initializable {
     @FXML
     public void mainSearchPart(ActionEvent event) throws IOException
     {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("AddProductView.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();       
-        window.setScene(tableViewScene);
-        window.show();
+        this.goToPage(event,"AddProductView.fxml");
     }
     @FXML
     public void mainSearchProduct(ActionEvent event) throws IOException
     {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("AddProductView.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();        
-        window.setScene(tableViewScene);
-        window.show();
-    }    
+        this.goToPage(event,"AddProductView.fxml");
+    }   
     
+    public static int getPartModifyIndex(){
+        return modifyPartIndex;
+    }   
+    
+    public void goToPage(ActionEvent event, String page) throws IOException{
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource(page));
+            Scene tableViewScene = new Scene(tableViewParent);
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();        
+            window.setScene(tableViewScene);
+            window.show();   
+    }
 }

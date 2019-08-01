@@ -36,6 +36,13 @@ public class Inventory extends Application {
     public static void addPart(Part part){
         allParts.add(part);
     }
+    
+    public static void updatePart(int index, Part part) {
+        allParts.set(index, part);
+    }  
+    public static void deletePart(Part part) {
+        allParts.remove(part);
+    }  
 
     /**
      * @param args the command line arguments
@@ -44,10 +51,10 @@ public class Inventory extends Application {
         launch(args);
     }
     
-    public static ObservableList getAllParts(){
+    public static ObservableList<Part> getAllParts(){
         return allParts;
     }
-    public static ObservableList getAllProducts(){
+    public static ObservableList<Product> getAllProducts(){
         return allProducts;
     }
     public static void incrementPartId(){

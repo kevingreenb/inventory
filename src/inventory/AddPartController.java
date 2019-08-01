@@ -57,7 +57,6 @@ public class AddPartController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         final ToggleGroup group = new ToggleGroup();
         addInHouse.setToggleGroup(group);
         addOutsourced.setToggleGroup(group);
@@ -93,14 +92,12 @@ public class AddPartController implements Initializable {
                 if (inHouse == true){
                      InHouse part = new InHouse(name,partID,price,inStock,min,max,Integer.parseInt(companyName));
                      Inventory.addPart(part);
-                     Inventory.incrementPartId();
-                     goToMainScreen(event);
                 } else {
                     Outsourced part = new Outsourced(name,partID,price,inStock,min,max,companyName);
                     Inventory.addPart(part); 
-                    Inventory.incrementPartId();
-                    goToMainScreen(event);
-                }    
+                }   
+                Inventory.incrementPartId();
+                goToMainScreen(event);
             }             
         } catch(NumberFormatException nfe) {
             Alert alert = new Alert(AlertType.ERROR);

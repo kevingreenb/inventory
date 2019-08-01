@@ -23,6 +23,8 @@ import javafx.stage.Stage;
  * @author kevingreen
  */
 public class AddProductController implements Initializable {
+    
+    MainController main = new MainController();
 
     /**
      * Initializes the controller class.
@@ -34,61 +36,26 @@ public class AddProductController implements Initializable {
     @FXML
      public void addProductSave(ActionEvent event) throws IOException
     {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("MainView.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
-        window.setScene(tableViewScene);
-        window.show();
+        main.goToPage(event, "MainView.fxml");
     }
     @FXML
     public void addProductCancel(ActionEvent event) throws IOException
     {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("MainView.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
-        window.setScene(tableViewScene);
-        window.show();
+        main.goToPage(event, "MainView.fxml");
     }
     @FXML
     public void addProductDelete(ActionEvent event) throws IOException
     {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("MainView.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
-        window.setScene(tableViewScene);
-        window.show();
+        main.goToPage(event, "MainView.fxml");
     }
     @FXML
     public void addProductAdd(ActionEvent event) throws IOException
     {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("MainView.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
-        window.setScene(tableViewScene);
-        window.show();
+        main.goToPage(event, "MainView.fxml");
     }    
     @FXML
     public void addProductSearch(ActionEvent event) throws IOException
     {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("MainView.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
-        window.setScene(tableViewScene);
-        window.show();
+        main.goToPage(event, "MainView.fxml");
     } 
 }

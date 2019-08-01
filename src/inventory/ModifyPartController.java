@@ -15,8 +15,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
 /**
@@ -41,44 +44,95 @@ public class ModifyPartController implements Initializable {
     private TextField modifyPartsCompanyName;
     @FXML
     private Label modifyPartCoMaName; 
-
+    @FXML
+    private RadioButton modifyInhouse;
+    @FXML
+    private RadioButton modifyOutsourced;
+    
+    int index = MainController.getPartModifyIndex();
+    Boolean inHouse = false;
+    MainController main = new MainController();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        final ToggleGroup group = new ToggleGroup();
+        modifyInhouse.setToggleGroup(group);
+        modifyOutsourced.setToggleGroup(group);
+        modifyInhouse.setSelected(true);
+        Part part = Inventory.getAllParts().get(index);
+        modifyPartsID.setText(Integer.toString(part.getPartID()));
+        modifyPartsName.setText(part.getName());
+        modifyPartsInv.setText(Integer.toString(part.getInStock()));
+        modifyPartsPrice.setText(Double.toString(part.getPrice()));
+        modifyPartsMin.setText(Integer.toString(part.getMin()));
+        modifyPartsMax.setText(Integer.toString(part.getMax()));
+        if (part instanceof InHouse){
+            modifyPartsCompanyName.setText(Integer.toString(((InHouse) Inventory.getAllParts().get(index)).getMachineID()));
+            modifyInhouse.setSelected(true);
+            inHouse = true;
+        } else {
+            modifyPartsCompanyName.setText(((Outsourced) Inventory.getAllParts().get(index)).getCompanyName());
+            modifyOutsourced.setSelected(true);
+        }
+        
     }   
     @FXML
     public void modifyPartSave(ActionEvent event) throws IOException
     {
-        String name = modifyPartsName.getText();
-        String partID = modifyPartsID.getText();
-        String price = modifyPartsPrice.getText();
-        String inStock = modifyPartsInv.getText();
-        String min = modifyPartsMin.getText();
-        String max = modifyPartsMax.getText();
-        String companyName = modifyPartsCompanyName.getText();
-        
-        InHouse part = new InHouse(name, Integer.parseInt(partID),Double.parseDouble(price),Integer.parseInt(inStock),Integer.parseInt(min),Integer.parseInt(max),Integer.parseInt(companyName));
-        Inventory.addPart(part);
-        
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("MainView.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();    
-        window.setScene(tableViewScene);
-        window.show();
+        try {
+            String name = modifyPartsName.getText();
+            Integer partID = Integer.parseInt(modifyPartsID.getText());
+            Double price = Double.parseDouble(modifyPartsPrice.getText());
+            Integer inStock = Integer.parseInt(modifyPartsInv.getText());
+            Integer min = Integer.parseInt(modifyPartsMin.getText());
+            Integer max = Integer.parseInt(modifyPartsMax.getText());
+            String companyName = modifyPartsCompanyName.getText();
+            if (max <= min){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid Data");
+                alert.setHeaderText("");
+                alert.setContentText("Max needs to be greater than Min.");
+                alert.showAndWait();
+            } else if(inStock > max || inStock < min) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid Data");
+                alert.setHeaderText("");
+                alert.setContentText("Inv needs to be less than Max and greater than Min.");
+                alert.showAndWait();            
+            }   
+            else {
+                    if (inHouse == true){
+                       InHouse part = new InHouse(name,partID,price,inStock,min,max,Integer.parseInt(companyName));
+                       Inventory.updatePart(index, part);
+                    }
+                    else {
+                       Outsourced part = new Outsourced(name,partID,price,inStock,min,max,companyName);
+                       Inventory.updatePart(index, part);
+                    }               
+            }
+            main.goToPage(event, "MainView.fxml");
+        } catch(NumberFormatException nfe) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Data");
+            alert.setHeaderText("");
+            alert.setContentText("Invalid data in text-fields!");
+            alert.showAndWait();   
+        } 
     }
     @FXML
     public void modifyPartCancel(ActionEvent event) throws IOException
     {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("MainView.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
-        window.setScene(tableViewScene);
-        window.show();
+        main.goToPage(event, "MainView.fxml");
+    }
+    
+    @FXML
+    public void modifyInhouseAction(){
+        inHouse = true;
+    }
+    @FXML
+    public void modifyOutsorcedAction(){
+        inHouse = false;
     }
 }
