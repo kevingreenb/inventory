@@ -5,6 +5,7 @@
  */
 package inventory;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -51,7 +52,7 @@ public class AddPartController implements Initializable {
     @FXML
     private RadioButton addOutsourced;
     
-    Boolean inHouse = true;
+    private Boolean inHouse = true;
     /**
      * Initializes the controller class.
      */
@@ -89,7 +90,7 @@ public class AddPartController implements Initializable {
                 alert.showAndWait();            
             }    
             else {
-                if (inHouse == true){
+                if (getInhouse() == true){
                      InHouse part = new InHouse(name,partID,price,inStock,min,max,Integer.parseInt(companyName));
                      Inventory.addPart(part);
                 } else {
@@ -116,13 +117,13 @@ public class AddPartController implements Initializable {
     @FXML
     public void addInhouseAction(ActionEvent event) {
         addInHouse.setSelected(true);
-        inHouse = true;
+        setInhouse(true);
         addPartCoMaName.setText("Machine ID");
     }
     @FXML
     public void addOutsourcedAction(ActionEvent event) {
         addOutsourced.setSelected(true);
-        inHouse = false;
+        setInhouse(false);
         addPartCoMaName.setText("Company Name");
     }
     public void goToMainScreen(ActionEvent event) throws IOException{
@@ -133,4 +134,10 @@ public class AddPartController implements Initializable {
             window.show();
     }
     
+    public void setInhouse(Boolean bool){
+        inHouse = bool;
+    }
+    public boolean getInhouse(){
+        return inHouse;
+    }    
 }

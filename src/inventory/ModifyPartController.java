@@ -49,19 +49,17 @@ public class ModifyPartController implements Initializable {
     @FXML
     private RadioButton modifyOutsourced;
     
-    int index = MainController.getPartModifyIndex();
-    Boolean inHouse = false;
+    private int index = MainController.getPartModifyIndex();
+    private Boolean inHouse = false;
     MainController main = new MainController();
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         final ToggleGroup group = new ToggleGroup();
         modifyInhouse.setToggleGroup(group);
         modifyOutsourced.setToggleGroup(group);
         modifyInhouse.setSelected(true);
-        Part part = Inventory.getAllParts().get(index);
+        Part part = Inventory.getAllParts().get(getIndex());
         modifyPartsID.setText(Integer.toString(part.getPartID()));
         modifyPartsName.setText(part.getName());
         modifyPartsInv.setText(Integer.toString(part.getInStock()));
@@ -69,11 +67,11 @@ public class ModifyPartController implements Initializable {
         modifyPartsMin.setText(Integer.toString(part.getMin()));
         modifyPartsMax.setText(Integer.toString(part.getMax()));
         if (part instanceof InHouse){
-            modifyPartsCompanyName.setText(Integer.toString(((InHouse) Inventory.getAllParts().get(index)).getMachineID()));
+            modifyPartsCompanyName.setText(Integer.toString(((InHouse) Inventory.getAllParts().get(getIndex())).getMachineID()));
             modifyInhouse.setSelected(true);
-            inHouse = true;
+            setInHouse(true);
         } else {
-            modifyPartsCompanyName.setText(((Outsourced) Inventory.getAllParts().get(index)).getCompanyName());
+            modifyPartsCompanyName.setText(((Outsourced) Inventory.getAllParts().get(getIndex())).getCompanyName());
             modifyOutsourced.setSelected(true);
         }
         
@@ -103,13 +101,13 @@ public class ModifyPartController implements Initializable {
                 alert.showAndWait();            
             }   
             else {
-                    if (inHouse == true){
+                    if (getInHouse() == true){
                        InHouse part = new InHouse(name,partID,price,inStock,min,max,Integer.parseInt(companyName));
-                       Inventory.updatePart(index, part);
+                       Inventory.updatePart(getIndex(), part);
                     }
                     else {
                        Outsourced part = new Outsourced(name,partID,price,inStock,min,max,companyName);
-                       Inventory.updatePart(index, part);
+                       Inventory.updatePart(getIndex(), part);
                     }               
             }
             main.goToPage(event, "MainView.fxml");
@@ -129,10 +127,27 @@ public class ModifyPartController implements Initializable {
     
     @FXML
     public void modifyInhouseAction(){
-        inHouse = true;
+        setInHouse(true);
     }
     @FXML
     public void modifyOutsorcedAction(){
-        inHouse = false;
+        setInHouse(false);
     }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public Boolean getInHouse() {
+        return inHouse;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public void setInHouse(Boolean inHouse) {
+        this.inHouse = inHouse;
+    }
+    
 }

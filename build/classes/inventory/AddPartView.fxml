@@ -106,7 +106,7 @@
                      </rowConstraints>
                      <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-                        <Label text="Max" />
+                        <Label text="Min" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.rowIndex="6">
@@ -142,24 +142,24 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <TextField fx:id="addPartsName" layoutY="25.0" />
+                        <TextField fx:id="addPartsName" layoutY="25.0" promptText="Part Name" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
-                        <TextField fx:id="addPartsInv" layoutY="25.0" />
+                        <TextField fx:id="addPartsInv" layoutY="25.0" promptText="Inventory Level" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <children>
-                        <TextField fx:id="addPartsPrice" layoutY="25.0" />
+                        <TextField fx:id="addPartsPrice" layoutY="25.0" promptText="Price" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <children>
-                        <TextField fx:id="addPartsMax" layoutY="25.0" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
-                        <Label layoutX="147.0" layoutY="29.0" text="Min" />
-                        <TextField fx:id="addPartsMin" layoutX="220.0" layoutY="25.0" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                        <TextField fx:id="addPartsMin" layoutY="25.0" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" promptText="Min" />
+                        <Label layoutX="147.0" layoutY="29.0" text="Max" />
+                        <TextField fx:id="addPartsMax" layoutX="220.0" layoutY="25.0" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" promptText="Max" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">

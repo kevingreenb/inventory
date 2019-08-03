@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.effect.*?>
 <?import java.net.*?>
 <?import javafx.geometry.*?>
@@ -50,7 +51,7 @@
                                     </AnchorPane>
                                     <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                                        <center>
-                                          <TextField maxWidth="190.0" minWidth="190.0" prefWidth="190.0" BorderPane.alignment="CENTER">
+                                          <TextField fx:id="mainSearchPart" maxWidth="190.0" minWidth="190.0" prefWidth="190.0" promptText="Search Part Name" BorderPane.alignment="CENTER">
                                              <BorderPane.margin>
                                                 <Insets right="10.0" />
                                              </BorderPane.margin>
@@ -129,7 +130,7 @@
                                     </AnchorPane>
                                     <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                                        <center>
-                                          <TextField maxWidth="190.0" minWidth="190.0" prefWidth="190.0" BorderPane.alignment="CENTER">
+                                          <TextField fx:id="mainSearchProduct" maxWidth="190.0" minWidth="190.0" prefWidth="190.0" promptText="Search Product Name" BorderPane.alignment="CENTER">
                                              <BorderPane.margin>
                                                 <Insets right="10.0" />
                                              </BorderPane.margin>

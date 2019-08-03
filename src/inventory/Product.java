@@ -5,6 +5,7 @@
  */
 package inventory;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
@@ -20,13 +21,14 @@ public class Product {
     private int min;
     private int max;
 
-    public Product(String name, int productID, double price, int inStock, int min, int max) {
+    public Product(String name, int productID, double price, int inStock, int min, int max, ObservableList<Part> included) {
         this.name = name;
         this.productID = productID;
         this.price = price;
         this.inStock = inStock;
         this.min = min;
         this.max = max;
+        this.associatedParts = included;
     }
 
     public String getName() {
@@ -52,4 +54,9 @@ public class Product {
     public int getMax() {
         return max;
     }
+    
+    public ObservableList<Part> getAssociatedParts(){
+        return associatedParts;
+    }
+    
 }

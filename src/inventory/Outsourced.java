@@ -5,6 +5,8 @@
  */
 package inventory;
 
+import inventory.Part;
+
 /**
  *
  * @author kevingreen
